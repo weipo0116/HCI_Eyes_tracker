@@ -1,270 +1,378 @@
-// pages/index.js
-//不用看這個
-
+"use client";
 import Head from "next/head";
-import Image from "next/image";
-import {
-  Container,
-  Grid,
-  Box,
-  Heading,
-  Text,
-  Flex,
-  Link,
-} from "@chakra-ui/react";
-import "./tailwind.css"; // Import the Tailwind CSS
+import { useState } from "react";
 
-const Home = () => {
+export default function Home() {
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+
+  const toggleSearchVisibility = () => {
+    setIsSearchVisible(!isSearchVisible);
+  };
+
   return (
-    <div>
+    <div className="container px-16 py-4 bg-white">
       <Head>
-        <title>My E-Commerce Website</title>
-        <meta name="description" content="Welcome to our online store!" />
+        <title>HCI</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="bg-gray-800 text-white py-4">
-        <Container maxW="container.lg">
-          <Flex align="center">
-            <h1 className="text-4xl font-bold">Online Store</h1>
-            <Flex ml={40} mt={16}>
-              <Link mr={8} color="white">
-                Home
-              </Link>
-              <Link mr={8} color="white">
-                Products
-              </Link>
-              <Link color="white">Contact</Link>
-            </Flex>
-          </Flex>
-        </Container>
-      </header>
-      <Flex align="left">
-        <Image
-          src="/3.jpg"
-          alt="Product 1"
-          width={800}
-          height={100}
-          objectFit="cover"
-        />
-      </Flex>
-      <main>
-        <Container maxW="container.lg" my={8}>
-          <section>
-            <Heading as="h2" size="xl" mb="4">
-              Featured Products
-            </Heading>
-            <Grid
-              templateColumns="repeat(auto-fill, minmax(250px, 1fr))"
-              gap={6}
-            >
-              {/* Product 1 */}
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 1"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
+      {/* 頁首 */}
+      <nav className="flex justify-between items-center py-4">
+        <ul className="flex space-x-4">
+          <li>
+            <a href="#" className="text-sm text-black">
+              MENSWEAR
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-sm text-black">
+              WOMENSWEAR
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-sm text-black">
+              EVERYTHING ELSE
+            </a>
+          </li>
+          <li onClick={toggleSearchVisibility}>
+            <a href="#" className="text-sm text-black">
+              SEARCH
+            </a>
+            {isSearchVisible && (
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="SEARCH"
+                  className="px-2 py-1 border"
                 />
-                <Heading as="h3" size="md" mt={2}>
-                  Laptop
-                </Heading>
-                <Text mt={2}>Category: Electronics</Text>
-                <Text mt={2}>Price: $799.99</Text>
-                <Text mt={2}>Notes: High-performance laptop</Text>
-              </Box>
+              </div>
+            )}
+          </li>
+        </ul>
+        <a href="#" className="text-3xl  text-black">
+          HCI
+        </a>
+        <ul className="flex space-x-4">
+          <li></li>
+          <li>
+            <a href="#" className="text-sm text-black">
+              ENGLISH
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-sm text-black">
+              LOGIN
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-sm text-black">
+              WISHLIST
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-sm text-black">
+              SHOPPING BAG (0)
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-              {/* Product 2 */}
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 2"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
-                />
-                <Heading as="h3" size="md" mt={2}>
-                  Sneakers
-                </Heading>
-                <Text mt={2}>Category: Footwear</Text>
-                <Text mt={2}>Price: $59.99</Text>
-                <Text mt={2}>Notes: Comfortable sports sneakers</Text>
-              </Box>
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 1"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
-                />
-                <Heading as="h3" size="md" mt={2}>
-                  Laptop
-                </Heading>
-                <Text mt={2}>Category: Electronics</Text>
-                <Text mt={2}>Price: $799.99</Text>
-                <Text mt={2}>Notes: High-performance laptop</Text>
-              </Box>
+      <main className="flex justify-between">
+        {/* Left Aside */}
+        {/* 左邊的類別選擇 */}
+        {/* 第一個大類別 */}
+        <div className="flex-col my-8">
+          <aside>
+            <ul>
+              <li>
+                <a href="#" className="text-sm text-black">
+                  ALL CATEGORIES
+                </a>
+              </li>
 
-              {/* Product 2 */}
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 2"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
-                />
-                <Heading as="h3" size="md" mt={2}>
-                  Sneakers
-                </Heading>
-                <Text mt={2}>Category: Footwear</Text>
-                <Text mt={2}>Price: $59.99</Text>
-                <Text mt={2}>Notes: Comfortable sports sneakers</Text>
-              </Box>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  ACTIVITY
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  HOME
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  KIDS
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  PETS
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  SELF-CARE
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  TECHNOLOGY
+                </a>
+              </li>
+            </ul>
+          </aside>
+          {/* 第二個大類別 */}
+          <aside className="mt-8">
+            <h1 className="text-sm text-black">CLOTHING</h1>
+            <ul>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Bodysuits & Camis
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Tanks & Tees
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Blouses & Shirts
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Sweatshirts & Hoodies
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Sweaters
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Skirts
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Shorts
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Pants
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Jeans
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Dresses & Jumpsuits
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Vests
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-xs text-black">
+                  Cardigans
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
 
-              {/* Add more featured products as needed */}
-            </Grid>
-          </section>
+        {/* Center Section */}
+        {/* 商品成列 */}
+        <section className="my-8 mr-8 ml-8 items-center ">
+          <ul className="flex justify-center items-start grid grid-cols-4 gap-4">
+            {/* 第一個商品 */}
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
 
-          <section>
-            <Heading as="h2" size="xl" mb="4">
-              Recommended Products
-            </Heading>
-            <Grid
-              templateColumns="repeat(auto-fill, minmax(250px, 1fr))"
-              gap={6}
-            >
-              {/* Product 3 */}
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 3"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
-                />
-                <Heading as="h3" size="md" mt={2}>
-                  Smartwatch
-                </Heading>
-                <Text mt={2}>Category: Wearables</Text>
-                <Text mt={2}>Price: $129.99</Text>
-                <Text mt={2}>Notes: Fitness and health tracking</Text>
-              </Box>
+            {/* 第二個商品 */}
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 2" />
+              <p className="text-xs text-black">
+                EX NIHILO PARIS Fascination Eau de Parfum Travel Set
+              </p>
+              <p className="text-xs text-black">$195</p>
+            </li>
+            {/* 第三個商品 */}
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 3" />
+              <p className="text-xs text-black">
+                FLOS Purple Lampadina Table Lamp
+              </p>
+              <p className="text-xs text-black">$170</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 3" />
+              <p className="text-xs text-black">
+                FLOS Purple Lampadina Table Lamp
+              </p>
+              <p className="text-xs text-black">$170</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 3" />
+              <p className="text-xs text-black">
+                FLOS Purple Lampadina Table Lamp
+              </p>
+              <p className="text-xs text-black">$170</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
+            <li className="flex-1 text-left mx-4">
+              <img src="https://via.placeholder.com/180" alt="Product 1" />
+              <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+              <p className="text-xs text-black">$65</p>
+            </li>
+          </ul>
+        </section>
 
-              {/* Product 4 */}
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 4"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
-                />
-                <Heading as="h3" size="md" mt={2}>
-                  Backpack
-                </Heading>
-                <Text mt={2}>Category: Accessories</Text>
-                <Text mt={2}>Price: $39.99</Text>
-                <Text mt={2}>Notes: Stylish and spacious</Text>
-              </Box>
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 1"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
-                />
-                <Heading as="h3" size="md" mt={2}>
-                  Laptop
-                </Heading>
-                <Text mt={2}>Category: Electronics</Text>
-                <Text mt={2}>Price: $799.99</Text>
-                <Text mt={2}>Notes: High-performance laptop</Text>
-              </Box>
+        {/* Right Aside */}
+        {/* 右邊的類別選擇 */}
+        {/* 第一個大類別 */}
+        <aside className="my-8">
+          <h2 className="text-sm text-black">SORT</h2>
+          <ul>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Latest arrivals
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Trending
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Price: Low to high
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Price: High to low
+              </a>
+            </li>
+          </ul>
 
-              {/* Product 2 */}
-              <Box
-                p={4}
-                boxShadow="md"
-                borderWidth="1px"
-                borderRadius="md"
-                overflow="hidden"
-              >
-                <Image
-                  src="/1.jpg"
-                  alt="Product 2"
-                  width={400}
-                  height={250}
-                  objectFit="cover"
-                />
-                <Heading as="h3" size="md" mt={2}>
-                  Sneakers
-                </Heading>
-                <Text mt={2}>Category: Footwear</Text>
-                <Text mt={2}>Price: $59.99</Text>
-                <Text mt={2}>Notes: Comfortable sports sneakers</Text>
-              </Box>
-
-              {/* Add more recommended products as needed */}
-            </Grid>
-          </section>
-
-          {/* Add more sections as needed, such as banners, promotions, etc. */}
-        </Container>
+          {/* 第二個大類別 */}
+          <h1 className="mt-8 text-sm text-black">COLORS</h1>
+          <ul>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Black
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Blue
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Brown
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Burgundy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Gray
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Green
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Navy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Orange
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Pink
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Purple
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Red
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Tan
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                White
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-xs text-black">
+                Yellow
+              </a>
+            </li>
+          </ul>
+        </aside>
       </main>
-
-      <footer className="bg-gray-800 text-white py-4 mt-8">
-        <Container maxW="container.lg">
-          <p>&copy; 2023 My E-Commerce Website</p>
-          {/* Add additional footer information */}
-        </Container>
-      </footer>
     </div>
   );
-};
-
-export default Home;
+}
