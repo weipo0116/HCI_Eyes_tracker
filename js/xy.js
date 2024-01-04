@@ -13,6 +13,8 @@ var recordInterval = setInterval(function () {
       time: currentTime.toISOString(),
       x: prediction.x,
       y: prediction.y,
+      scrollX: prediction.x + window.scrollX,
+      scrollY: prediction.y + window.scrollY,
     });
   });
 }, 100); // 100毫秒表示每秒记录10次
@@ -20,12 +22,12 @@ var recordInterval = setInterval(function () {
 // 设置定时器，在30秒后停止记录并将数据写入txt文件
 setTimeout(function () {
   clearInterval(recordInterval); // 停止记录
-  recordedData.unshift({ time: 'time', x: 'position_x', y: 'position_y' });
+  recordedData.unshift({ time: 'time', x: 'position_x', y: 'position_y', scrollX: 'scroll_x', scrollY: 'scroll_y' });
 
   // 将记录的数据转换为字符串形式
   var dataString = recordedData
     .map(function (point) {
-      return point.time + "\t" + point.x + "\t" + point.y;
+      return point.time + "\t" + point.x + "\t" + point.y + "\t" + point.scrollX + "\t" + point.scrollY;
     })
     .join("\n");
 

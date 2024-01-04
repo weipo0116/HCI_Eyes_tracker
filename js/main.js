@@ -1,4 +1,5 @@
 window.onload = async function () {
+  var prevY = 0;
   //start the webgazer tracker
   await webgazer
     .setRegression("ridge") /* currently must set regression and tracker */
@@ -10,14 +11,24 @@ window.onload = async function () {
       var scrollY = data.y + window.scrollY;
 
       displayCustomElement(data.x, data.y);
+
+      // 判断眼动y坐标与页面高度的关系
+      if (data.y < 0) {
+        // 如果眼动在页面的最上方，向上滚动5个单位
+        window.scrollBy(0, -5);
+      } else if (data.y > window.innerHeight) {
+        // 如果眼动在页面的最下方，向下滚动5个单位
+        window.scrollBy(0, 5);
+      }
+
     })
     .saveDataAcrossSessions(true)
     .begin();
 
   webgazer
-    .showVideoPreview(true) /* shows all video previews */
+    .showVideoPreview(false) /* shows all video previews */
     .showPredictionPoints(
-      false //默認紅點
+      true //默認紅點
     ) /* shows a square every 100 milliseconds where current prediction is */
     .applyKalmanFilter(
       true
@@ -57,7 +68,7 @@ function displayCustomElement(x, y) {
   if (!eyeIcon) {
     eyeIcon = document.createElement("span");
     eyeIcon.id = "eyeIcon";
-    eyeIcon.innerHTML = "👀"; // Use the eye emoji or replace it with your custom eye icon
+    eyeIcon.innerHTML = ""; // Use the eye emoji or replace it with your custom eye icon
     eyeIcon.style.fontSize = "24px";
     eyeIcon.style.position = "fixed";
     document.body.appendChild(eyeIcon);

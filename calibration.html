@@ -29,61 +29,381 @@ Instructions on use can be found in the README repository.
         <script src="./js/precision_store_points.js"></script>
         <script src="./js/xy.js"></script>
 
-        <nav id="webgazerNavbar" class="navbar navbar-expand-lg navbar-default navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <!-- The hamburger menu button -->
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
-                <span class="navbar-toggler-icon">Menu</span>
-              </button>
+        <button onclick="startCalibration()">开始校准</button>
+
+        <div className="container px-16 py-4 bg-white">
+          <Head>
+            <title>HCI</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+    
+          {/* 頁首 */}
+          <nav className="flex justify-between items-center py-4">
+            <ul className="flex space-x-4">
+              <li>
+                <a href="#" className="text-sm text-black">
+                  MENSWEAR
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-black">
+                  WOMENSWEAR
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-black">
+                  EVERYTHING ELSE
+                </a>
+              </li>
+              <li onClick={toggleSearchVisibility}>
+                <a href="#" className="text-sm text-black">
+                  SEARCH
+                </a>
+                {isSearchVisible && (
+                  <div className="search-container">
+                    <input
+                      type="text"
+                      placeholder="SEARCH"
+                      className="px-2 py-1 border"
+                    />
+                  </div>
+                )}
+              </li>
+            </ul>
+            <a href="#" className="text-3xl  text-black">
+              HCI
+            </a>
+            <ul className="flex space-x-4">
+              <li></li>
+              <li>
+                <a href="#" className="text-sm text-black">
+                  ENGLISH
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-black">
+                  LOGIN
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-black">
+                  WISHLIST
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-black">
+                  SHOPPING BAG (0)
+                </a>
+              </li>
+            </ul>
+          </nav>
+    
+          <main className="flex justify-between">
+            {/* Left Aside */}
+            {/* 左邊的類別選擇 */}
+            {/* 第一個大類別 */}
+            <div className="flex-col my-8">
+              <aside>
+                <ul>
+                  <li>
+                    <a href="#" className="text-sm text-black">
+                      ALL CATEGORIES
+                    </a>
+                  </li>
+    
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      ACTIVITY
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      HOME
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      KIDS
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      PETS
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      SELF-CARE
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      TECHNOLOGY
+                    </a>
+                  </li>
+                </ul>
+              </aside>
+              {/* 第二個大類別 */}
+              <aside className="mt-8">
+                <h1 className="text-sm text-black">CLOTHING</h1>
+                <ul>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Bodysuits & Camis
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Tanks & Tees
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Blouses & Shirts
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Sweatshirts & Hoodies
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Sweaters
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Skirts
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Shorts
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Pants
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Jeans
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Dresses & Jumpsuits
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Vests
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="text-xs text-black">
+                      Cardigans
+                    </a>
+                  </li>
+                </ul>
+              </aside>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
-                <!-- Accuracy -->
-                <li id="Accuracy"><a>Not yet Calibrated</a></li>
-                <li><a onclick="Restart()" href="#">Recalibrate</a></li>
-                <li><a onclick="webgazer.applyKalmanFilter(!webgazer.params.applyKalmanFilter)" href="#">Toggle Kalman Filter</a></li>
+    
+            {/* Center Section */}
+            {/* 商品成列 */}
+            <section className="my-8 mr-8 ml-8 items-center ">
+              <ul className="flex justify-center items-start grid grid-cols-4 gap-4">
+                {/* 第一個商品 */}
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
+    
+                {/* 第二個商品 */}
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 2" />
+                  <p className="text-xs text-black">
+                    EX NIHILO PARIS Fascination Eau de Parfum Travel Set
+                  </p>
+                  <p className="text-xs text-black">$195</p>
+                </li>
+                {/* 第三個商品 */}
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 3" />
+                  <p className="text-xs text-black">
+                    FLOS Purple Lampadina Table Lamp
+                  </p>
+                  <p className="text-xs text-black">$170</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 3" />
+                  <p className="text-xs text-black">
+                    FLOS Purple Lampadina Table Lamp
+                  </p>
+                  <p className="text-xs text-black">$170</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 3" />
+                  <p className="text-xs text-black">
+                    FLOS Purple Lampadina Table Lamp
+                  </p>
+                  <p className="text-xs text-black">$170</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
+                <li className="flex-1 text-left mx-4">
+                  <img src="https://via.placeholder.com/180" alt="Product 1" />
+                  <p className="text-xs text-black">SATTA Khaki Wall Organizer</p>
+                  <p className="text-xs text-black">$65</p>
+                </li>
               </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a class="helpBtn" onclick="helpModalShow()" href="#"><span class="glyphicon glyphicon-cog"></span> Help</a></li>
+            </section>
+    
+            {/* Right Aside */}
+            {/* 右邊的類別選擇 */}
+            {/* 第一個大類別 */}
+            <aside className="my-8">
+              <h2 className="text-sm text-black">SORT</h2>
+              <ul>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Latest arrivals
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Trending
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Price: Low to high
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Price: High to low
+                  </a>
+                </li>
               </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- Calibration points -->
-        <div class="calibrationDiv">
-            <input type="button" class="Calibration" id="Pt1"></input>
-            <input type="button" class="Calibration" id="Pt2"></input>
-            <input type="button" class="Calibration" id="Pt3"></input>
-            <input type="button" class="Calibration" id="Pt4"></input>
-            <input type="button" class="Calibration" id="Pt5"></input>
-            <input type="button" class="Calibration" id="Pt6"></input>
-            <input type="button" class="Calibration" id="Pt7"></input>
-            <input type="button" class="Calibration" id="Pt8"></input>
-            <input type="button" class="Calibration" id="Pt9"></input>
-        </div>
-
-        <!-- Modal -->
-        <div id="helpModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-body">
-                <img src="media/example/calibration.png" width="100%" height="100%" alt="webgazer demo instructions"></img>
-              </div>
-              <div class="modal-footer">
-                <button id="closeBtn" type="button" class="btn btn-default" data-bs-dismiss="modal">Close & load saved model </button>
-                <button type="button" id='start_calibration' class="btn btn-primary" data-bs-dismiss="modal" onclick="Restart()">Calibrate</button>
-              </div>
-            </div>
-
-          </div>
+    
+              {/* 第二個大類別 */}
+              <h1 className="mt-8 text-sm text-black">COLORS</h1>
+              <ul>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Black
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Blue
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Brown
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Burgundy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Gray
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Green
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Navy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Orange
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Pink
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Purple
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Red
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Tan
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    White
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-xs text-black">
+                    Yellow
+                  </a>
+                </li>
+              </ul>
+            </aside>
+          </main>
         </div>
 
         <!-- Latest compiled JavaScript -->
         <script src="./js/resize_canvas.js"></script>
         <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+        <script>
+          function startCalibration() {
+            // 打开新的校准页面
+            window.open('calibration.html', '_blank');
+          }
+        </script>
     </body>
 </html>
