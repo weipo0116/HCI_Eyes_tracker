@@ -1,8 +1,8 @@
 // 定义变量来存储记录的数据
 var recordedData = [];
 
-// 设置记录的总时长（30秒）
-var recordingDuration = 30 * 1000;
+// 设置记录的总时长（60秒）
+var recordingDuration = 60 * 1000;
 
 // 设置定时器，每秒记录一次数据
 var recordInterval = setInterval(function () {
