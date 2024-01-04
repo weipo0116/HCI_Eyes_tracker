@@ -14,10 +14,10 @@ Before you begin, ensure that you have the following prerequisites installed:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your-username/your-webgazer-project.git
+   git clone https://github.com/weipo0116/HCI_Eyes_tracker.git
 
 
-##Customization
+## Customization
 
 You can customize the WebGazer setup by modifying the configuration files and scripts in the src directory.
 
