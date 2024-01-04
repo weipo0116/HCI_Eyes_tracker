@@ -21,7 +21,6 @@ Before you begin, ensure that you have the following prerequisites installed:
 
 You can customize the WebGazer setup by modifying the configuration files and scripts in the src directory.
 
-main.js: Contains the main logic for WebGazer setup.
-calibration.js: Handles the calibration process.
-precision_calculation.js: Calculates the accuracy of predictions.
-xy.js: Records eye movement data.
+- main.js: Contains the main logic for WebGazer setup.
+- calibration.js: Handles the calibration process.
+- xy.js: Records eye movement data.
