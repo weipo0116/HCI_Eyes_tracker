@@ -1,0 +1,45 @@
+/* styles.css */
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flex li {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+.center-container {
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px; /* Adjust the margin as needed */
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+.text-sm.text-black {
+  font-size: 14px; /* Adjust the size as needed */
+  text-decoration: none;
+}
+
+.text-xs.text-black {
+  font-size: 12px; /* Adjust the size as needed */
+  text-decoration: none;
+}
+
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vertical-list li {
+  margin-bottom: 2px; /* Adjust the value as needed to reduce the spacing */
+}
