@@ -26,10 +26,13 @@ Instructions on use can be found in the README repository.
     <script>
       // 在網頁載入時提示用戶輸入數字
       const userInput = prompt("請輸入由空格分隔的四個數字，例如 '2 2 4 3'");
-
+      let a, b, c, d;
       // 判斷是否為有效的輸入
       if (userInput) {
-        handleInput(userInput);
+        const digits = userInput.split(" ");
+
+        [a, b, c, d] = digits;
+        //handleInput(userInput);
       } else {
         alert("無效的輸入");
       }
@@ -40,24 +43,13 @@ Instructions on use can be found in the README repository.
       }
 
       function handleInput(input) {
-        // 將輸入字符串分割為一個包含四個數字的數組
         const digits = input.split(" ");
+      }
 
-        // 檢查是否正好有四個數字
-        if (digits.length === 4) {
-          // 分別取出變數 a、b、c、d
-          const [a, b, c, d] = digits;
-
-          // 根據 a、b、c、d 的值控制頁面顯示
-          if (a == 1) {
-            alert("a");
-          } else if (a == 2) {
-            alert("b");
-          }
-          // 如果需要，您可以繼續對其他 a 的值進行 else-if 陳述
-        } else {
-          alert("請輸入由空格分隔的正確四個數字。");
-        }
+      if (a == 1) {
+        console.log(a);
+      } else if (a == 2) {
+        // 隐藏ALL CATEGORIES内容
       }
     </script>
     <canvas
@@ -74,6 +66,75 @@ Instructions on use can be found in the README repository.
     <script src="./js/precision_calculation.js"></script>
     <script src="./js/precision_store_points.js"></script>
     <script src="./js/xy.js"></script>
+    <script>
+      let clothingContent = `
+        <div id="clothing-container">
+          <h6 href="#" class="text-sm text-black">CLOTHING</h6>
+          <ul class="vertical-list">
+            <li><a href="#" class="text-xs text-black">Bodysuits & Camis</a></li>
+            <li><a href="#" class="text-xs text-black">Tanks & Tees</a></li>
+            <li><a href="#" class="text-xs text-black">Blouses & Shirts</a></li>
+            <li><a href="#" class="text-xs text-black">Sweatshirts & Hoodies</a></li>
+            <li><a href="#" class="text-xs text-black">Sweaters</a></li>
+            <li><a href="#" class="text-xs text-black">Skirts</a></li>
+            <li><a href="#" class="text-xs text-black">Shorts</a></li>
+            <li><a href="#" class="text-xs text-black">Pants</a></li>
+            <li><a href="#" class="text-xs text-black">Jeans</a></li>
+            <li><a href="#" class="text-xs text-black">Dresses & Jumpsuits</a></li>
+            <li><a href="#" class="text-xs text-black">Vests</a></li>
+            <li><a href="#" class="text-xs text-black">Cardigans</a></li>
+          </ul>
+        </div>
+      `;
+    </script>
+    <script>
+      let sortContent = `
+        <div id="clothing-container">
+          <h6 class="text-sm text-black">SORT</h6>
+      <ul class="vertical-list">
+        <li>
+          <a href="#" class="text-xs text-black">Latest arrivals</a>
+        </li>
+        <li>
+          <a href="#" class="text-xs text-black">Trending</a>
+        </li>
+        <li>
+          <a href="#" class="text-xs text-black"
+            >Price: Low to high</a
+          >
+        </li>
+        <li>
+          <a href="#" class="text-xs text-black"
+            >Price: High to low</a
+          >
+        </li>
+      </ul>
+        </div>
+        `;
+    </script>
+    <script>
+      let colorsContent = `
+<aside style="margin-top: 20px">
+<h6 class="text-sm text-black">COLORS</h6>
+<ul class="vertical-list">
+<li><a href="#" class="text-xs text-black">Black</a></li>
+<li><a href="#" class="text-xs text-black">Blue</a></li>
+<li><a href="#" class="text-xs text-black">Brown</a></li>
+<li><a href="#" class="text-xs text-black">Burgundy</a></li>
+<li><a href="#" class="text-xs text-black">Gray</a></li>
+<li><a href="#" class="text-xs text-black">Green</a></li>
+<li><a href="#" class="text-xs text-black">Navy</a></li>
+<li><a href="#" class="text-xs text-black">Orange</a></li>
+<li><a href="#" class="text-xs text-black">Pink</a></li>
+<li><a href="#" class="text-xs text-black">Purple</a></li>
+<li><a href="#" class="text-xs text-black">Red</a></li>
+<li><a href="#" class="text-xs text-black">Tan</a></li>
+<li><a href="#" class="text-xs text-black">White</a></li>
+<li><a href="#" class="text-xs text-black">Yellow</a></li>
+</ul>
+</aside>
+`;
+    </script>
 
     <button onclick="startCalibration()">开始校准</button>
 
@@ -121,32 +182,8 @@ Instructions on use can be found in the README repository.
 
           <main class="flex justify-between">
             <div class="flex-col my-8">
-              <!-- <aside>
-                <h6 href="#" class="text-sm text-black">ALL CATEGORIES</h6>
-
-                <ul class="vertical-list">
-                  <li>
-                    <a href="#" class="text-xs text-black"> ACTIVITY </a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">HOME </a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"> KIDS </a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"> PETS </a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"> SELF-CARE </a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"> TECHNOLOGY </a>
-                  </li>
-                </ul>
-              </aside> -->
               <script>
-                const categoriesContent = `
+                let categoriesContent = `
                   <div id="categories-container">
                     <h6 href="#" class="text-sm text-black">ALL CATEGORIES</h6>
                     <ul class="vertical-list">
@@ -159,35 +196,37 @@ Instructions on use can be found in the README repository.
                     </ul>
                   </div>
                 `;
+              </script>
 
-                document.write(categoriesContent);
-
-                // document.write(categoriesContent);
+              <script>
+                //console.log(a);
+                // 在此处使用 if 语句判断
+                if (a == 1) {
+                  console.log(a);
+                  document.write(categoriesContent);
+                } else if (a == 2) {
+                  document.write(clothingContent);
+                } else if (a == 3) {
+                  document.write(sortContent);
+                } else {
+                  document.write(colorsContent);
+                }
               </script>
 
               <aside style="margin-top: 20px">
                 <script>
-                  const clothingContent = `
-                    <div id="clothing-container">
-                      <h6 href="#" class="text-sm text-black">CLOTHING</h6>
-                      <ul class="vertical-list">
-                        <li><a href="#" class="text-xs text-black">Bodysuits & Camis</a></li>
-                        <li><a href="#" class="text-xs text-black">Tanks & Tees</a></li>
-                        <li><a href="#" class="text-xs text-black">Blouses & Shirts</a></li>
-                        <li><a href="#" class="text-xs text-black">Sweatshirts & Hoodies</a></li>
-                        <li><a href="#" class="text-xs text-black">Sweaters</a></li>
-                        <li><a href="#" class="text-xs text-black">Skirts</a></li>
-                        <li><a href="#" class="text-xs text-black">Shorts</a></li>
-                        <li><a href="#" class="text-xs text-black">Pants</a></li>
-                        <li><a href="#" class="text-xs text-black">Jeans</a></li>
-                        <li><a href="#" class="text-xs text-black">Dresses & Jumpsuits</a></li>
-                        <li><a href="#" class="text-xs text-black">Vests</a></li>
-                        <li><a href="#" class="text-xs text-black">Cardigans</a></li>
-                      </ul>
-                    </div>
-                  `;
+                  if (b == 1) {
+                    console.log(b);
+                    document.write(categoriesContent);
+                  } else if (b == 2) {
+                    document.write(clothingContent);
+                  } else if (b == 3) {
+                    document.write(sortContent);
+                  } else {
+                    document.write(colorsContent);
+                  }
 
-                  document.write(clothingContent);
+                  // document.write(clothingContent);
                 </script>
               </aside>
             </div>
@@ -229,127 +268,32 @@ Instructions on use can be found in the README repository.
             </section>
             <div class="flex-col my-8">
               <script>
-                const sortContent = `
-                  <div id="clothing-container">
-                    <h6 class="text-sm text-black">SORT</h6>
-                <ul class="vertical-list">
-                  <li>
-                    <a href="#" class="text-xs text-black">Latest arrivals</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Trending</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"
-                      >Price: Low to high</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"
-                      >Price: High to low</a
-                    >
-                  </li>
-                </ul>
-                  </div>
-                  `;
-
-                document.write(sortContent);
+                if (c == 1) {
+                  console.log(c);
+                  document.write(categoriesContent);
+                } else if (c == 2) {
+                  document.write(clothingContent);
+                } else if (c == 3) {
+                  document.write(sortContent);
+                } else {
+                  document.write(colorsContent);
+                }
+                // document.write(sortContent);
               </script>
-              <!-- <aside class="my-8">
-                <h6 class="text-sm text-black">SORT</h6>
-                <ul class="vertical-list">
-                  <li>
-                    <a href="#" class="text-xs text-black">Latest arrivals</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Trending</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"
-                      >Price: Low to high</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"
-                      >Price: High to low</a
-                    >
-                  </li>
-                </ul>
-              </aside> -->
 
-              <!-- <aside style="margin-top: 20px">
-                <h6 class="text-sm text-black">COLORS</h6>
-
-                <ul class="vertical-list">
-                  <li>
-                    <a href="#" class="text-xs text-black">Black</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Blue</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Brown</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Burgundy</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Gray</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Green</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Navy</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Orange</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Pink</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Purple</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Red</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Tan</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">White</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Yellow</a>
-                  </li>
-                </ul>
-              </aside> -->
-              <!-- Script to insert colors content -->
               <script>
-                const colorsContent = `
-    <aside style="margin-top: 20px">
-      <h6 class="text-sm text-black">COLORS</h6>
-      <ul class="vertical-list">
-        <li><a href="#" class="text-xs text-black">Black</a></li>
-        <li><a href="#" class="text-xs text-black">Blue</a></li>
-        <li><a href="#" class="text-xs text-black">Brown</a></li>
-        <li><a href="#" class="text-xs text-black">Burgundy</a></li>
-        <li><a href="#" class="text-xs text-black">Gray</a></li>
-        <li><a href="#" class="text-xs text-black">Green</a></li>
-        <li><a href="#" class="text-xs text-black">Navy</a></li>
-        <li><a href="#" class="text-xs text-black">Orange</a></li>
-        <li><a href="#" class="text-xs text-black">Pink</a></li>
-        <li><a href="#" class="text-xs text-black">Purple</a></li>
-        <li><a href="#" class="text-xs text-black">Red</a></li>
-        <li><a href="#" class="text-xs text-black">Tan</a></li>
-        <li><a href="#" class="text-xs text-black">White</a></li>
-        <li><a href="#" class="text-xs text-black">Yellow</a></li>
-      </ul>
-    </aside>
-  `;
+                if (d == 1) {
+                  console.log(d);
+                  document.write(categoriesContent);
+                } else if (d == 2) {
+                  document.write(clothingContent);
+                } else if (d == 3) {
+                  document.write(sortContent);
+                } else {
+                  document.write(colorsContent);
+                }
 
-                document.write(colorsContent);
+                // document.write(colorsContent);
               </script>
             </div>
           </main>
