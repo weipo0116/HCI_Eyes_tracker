@@ -43,3 +43,8 @@
 .vertical-list li {
   margin-bottom: 2px; /* Adjust the value as needed to reduce the spacing */
 }
+/* 其他样式... */
+.hover-target:hover {
+  transform: scale(1.1); /* 在悬停时放大 10% */
+  transition: transform 0.3s ease; /* 添加过渡效果 */
+}

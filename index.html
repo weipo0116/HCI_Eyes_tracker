@@ -23,6 +23,43 @@ Instructions on use can be found in the README repository.
     <script src="./webgazer.js"></script>
   </head>
   <body lang="en-US" link="#0000ff" dir="LTR">
+    <script>
+      // 在網頁載入時提示用戶輸入數字
+      const userInput = prompt("請輸入由空格分隔的四個數字，例如 '2 2 4 3'");
+
+      // 判斷是否為有效的輸入
+      if (userInput) {
+        handleInput(userInput);
+      } else {
+        alert("無效的輸入");
+      }
+
+      function startCalibration() {
+        // Open a new calibration page
+        window.open("calibration.html", "_blank");
+      }
+
+      function handleInput(input) {
+        // 將輸入字符串分割為一個包含四個數字的數組
+        const digits = input.split(" ");
+
+        // 檢查是否正好有四個數字
+        if (digits.length === 4) {
+          // 分別取出變數 a、b、c、d
+          const [a, b, c, d] = digits;
+
+          // 根據 a、b、c、d 的值控制頁面顯示
+          if (a == 1) {
+            alert("a");
+          } else if (a == 2) {
+            alert("b");
+          }
+          // 如果需要，您可以繼續對其他 a 的值進行 else-if 陳述
+        } else {
+          alert("請輸入由空格分隔的正確四個數字。");
+        }
+      }
+    </script>
     <canvas
       id="plotting_canvas"
       width="500"
@@ -84,7 +121,7 @@ Instructions on use can be found in the README repository.
 
           <main class="flex justify-between">
             <div class="flex-col my-8">
-              <aside>
+              <!-- <aside>
                 <h6 href="#" class="text-sm text-black">ALL CATEGORIES</h6>
 
                 <ul class="vertical-list">
@@ -107,52 +144,51 @@ Instructions on use can be found in the README repository.
                     <a href="#" class="text-xs text-black"> TECHNOLOGY </a>
                   </li>
                 </ul>
-              </aside>
+              </aside> -->
+              <script>
+                const categoriesContent = `
+                  <div id="categories-container">
+                    <h6 href="#" class="text-sm text-black">ALL CATEGORIES</h6>
+                    <ul class="vertical-list">
+                      <li><a href="#" class="text-xs text-black"> ACTIVITY </a></li>
+                      <li><a href="#" class="text-xs text-black">HOME </a></li>
+                      <li><a href="#" class="text-xs text-black"> KIDS </a></li>
+                      <li><a href="#" class="text-xs text-black"> PETS </a></li>
+                      <li><a href="#" class="text-xs text-black"> SELF-CARE </a></li>
+                      <li><a href="#" class="text-xs text-black"> TECHNOLOGY </a></li>
+                    </ul>
+                  </div>
+                `;
+
+                document.write(categoriesContent);
+
+                // document.write(categoriesContent);
+              </script>
 
               <aside style="margin-top: 20px">
-                <h6 class="text-sm text-black">CLOTHING</h6>
-                <ul class="vertical-list">
-                  <li>
-                    <a href="#" class="text-xs text-black">Bodysuits & Camis</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Tanks & Tees</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Blouses & Shirts</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"
-                      >Sweatshirts & Hoodies</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Sweaters</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Skirts</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Shorts</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Pants</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Jeans</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black"
-                      >Dresses & Jumpsuits</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Vests</a>
-                  </li>
-                  <li>
-                    <a href="#" class="text-xs text-black">Cardigans</a>
-                  </li>
-                </ul>
+                <script>
+                  const clothingContent = `
+                    <div id="clothing-container">
+                      <h6 href="#" class="text-sm text-black">CLOTHING</h6>
+                      <ul class="vertical-list">
+                        <li><a href="#" class="text-xs text-black">Bodysuits & Camis</a></li>
+                        <li><a href="#" class="text-xs text-black">Tanks & Tees</a></li>
+                        <li><a href="#" class="text-xs text-black">Blouses & Shirts</a></li>
+                        <li><a href="#" class="text-xs text-black">Sweatshirts & Hoodies</a></li>
+                        <li><a href="#" class="text-xs text-black">Sweaters</a></li>
+                        <li><a href="#" class="text-xs text-black">Skirts</a></li>
+                        <li><a href="#" class="text-xs text-black">Shorts</a></li>
+                        <li><a href="#" class="text-xs text-black">Pants</a></li>
+                        <li><a href="#" class="text-xs text-black">Jeans</a></li>
+                        <li><a href="#" class="text-xs text-black">Dresses & Jumpsuits</a></li>
+                        <li><a href="#" class="text-xs text-black">Vests</a></li>
+                        <li><a href="#" class="text-xs text-black">Cardigans</a></li>
+                      </ul>
+                    </div>
+                  `;
+
+                  document.write(clothingContent);
+                </script>
               </aside>
             </div>
 
@@ -192,7 +228,34 @@ Instructions on use can be found in the README repository.
               </ul>
             </section>
             <div class="flex-col my-8">
-              <aside class="my-8">
+              <script>
+                const sortContent = `
+                  <div id="clothing-container">
+                    <h6 class="text-sm text-black">SORT</h6>
+                <ul class="vertical-list">
+                  <li>
+                    <a href="#" class="text-xs text-black">Latest arrivals</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-xs text-black">Trending</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-xs text-black"
+                      >Price: Low to high</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="text-xs text-black"
+                      >Price: High to low</a
+                    >
+                  </li>
+                </ul>
+                  </div>
+                  `;
+
+                document.write(sortContent);
+              </script>
+              <!-- <aside class="my-8">
                 <h6 class="text-sm text-black">SORT</h6>
                 <ul class="vertical-list">
                   <li>
@@ -212,9 +275,9 @@ Instructions on use can be found in the README repository.
                     >
                   </li>
                 </ul>
-              </aside>
+              </aside> -->
 
-              <aside style="margin-top: 20px">
+              <!-- <aside style="margin-top: 20px">
                 <h6 class="text-sm text-black">COLORS</h6>
 
                 <ul class="vertical-list">
@@ -261,7 +324,33 @@ Instructions on use can be found in the README repository.
                     <a href="#" class="text-xs text-black">Yellow</a>
                   </li>
                 </ul>
-              </aside>
+              </aside> -->
+              <!-- Script to insert colors content -->
+              <script>
+                const colorsContent = `
+    <aside style="margin-top: 20px">
+      <h6 class="text-sm text-black">COLORS</h6>
+      <ul class="vertical-list">
+        <li><a href="#" class="text-xs text-black">Black</a></li>
+        <li><a href="#" class="text-xs text-black">Blue</a></li>
+        <li><a href="#" class="text-xs text-black">Brown</a></li>
+        <li><a href="#" class="text-xs text-black">Burgundy</a></li>
+        <li><a href="#" class="text-xs text-black">Gray</a></li>
+        <li><a href="#" class="text-xs text-black">Green</a></li>
+        <li><a href="#" class="text-xs text-black">Navy</a></li>
+        <li><a href="#" class="text-xs text-black">Orange</a></li>
+        <li><a href="#" class="text-xs text-black">Pink</a></li>
+        <li><a href="#" class="text-xs text-black">Purple</a></li>
+        <li><a href="#" class="text-xs text-black">Red</a></li>
+        <li><a href="#" class="text-xs text-black">Tan</a></li>
+        <li><a href="#" class="text-xs text-black">White</a></li>
+        <li><a href="#" class="text-xs text-black">Yellow</a></li>
+      </ul>
+    </aside>
+  `;
+
+                document.write(colorsContent);
+              </script>
             </div>
           </main>
         </div>
@@ -271,11 +360,11 @@ Instructions on use can be found in the README repository.
     <!-- Latest compiled JavaScript -->
     <script src="./js/resize_canvas.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+    <!-- <script>
       function startCalibration() {
         // 打开新的校准页面
         window.open("calibration.html", "_blank");
       }
-    </script>
+    </script> -->
   </body>
 </html>

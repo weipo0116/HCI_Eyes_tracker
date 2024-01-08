@@ -12,6 +12,9 @@ window.onload = async function () {
 
       displayCustomElement(data.x, data.y);
 
+      // 在这里添加监听红点位置的代码
+      checkHoverTargets(scrollX, scrollY);
+
       // 判断眼动y坐标与页面高度的关系
       if (data.y < 0) {
         // 如果眼动在页面的最上方，向上滚动5个单位
@@ -20,7 +23,6 @@ window.onload = async function () {
         // 如果眼动在页面的最下方，向下滚动5个单位
         window.scrollBy(0, 5);
       }
-
     })
     .saveDataAcrossSessions(true)
     .begin();
@@ -77,4 +79,43 @@ function displayCustomElement(x, y) {
   // Position the eye icon at the gaze coordinates
   eyeIcon.style.left = x + "px";
   eyeIcon.style.top = y + "px";
+}
+
+// 添加一个监听红点位置的函数
+function checkHoverTargets(eyeX, eyeY) {
+  var targets = document.querySelectorAll(".hover-target"); // 选择所有需要触发 hover 的元素，这里使用类选择器 ".hover-target"
+
+  targets.forEach(function (target) {
+    // 计算目标元素的边界
+    var targetLeft = target.offsetLeft;
+    var targetRight = targetLeft + target.offsetWidth;
+    var targetTop = target.offsetTop;
+    var targetBottom = targetTop + target.offsetHeight;
+
+    // 判断红点是否在目标元素的区域内
+    if (
+      eyeX >= targetLeft &&
+      eyeX <= targetRight &&
+      eyeY >= targetTop &&
+      eyeY <= targetBottom
+    ) {
+      // 在这里触发 hover 事件，你可以使用你项目中的 hover 效果的实现方式
+      triggerHover(target);
+    } else {
+      // 如果红点不在目标元素的区域内，可以在这里执行取消 hover 的操作
+      cancelHover(target);
+    }
+  });
+}
+
+// 触发 hover 事件的函数，你需要根据项目中的实际需求来实现
+function triggerHover(element) {
+  // 例如，添加一个 CSS 类来模拟 hover 效果
+  element.classList.add("hovered");
+}
+
+// 取消 hover 事件的函数
+function cancelHover(element) {
+  // 例如，移除之前添加的 CSS 类
+  element.classList.remove("hovered");
 }

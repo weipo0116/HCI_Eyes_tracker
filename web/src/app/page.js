@@ -1,6 +1,7 @@
 "use client";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+import CategoriesList from 'component/CategoriesList';
 
 
   return (
@@ -68,46 +69,7 @@ import React, { useEffect, useState } from "react";
         {/* 左邊的類別選擇 */}
         {/* 第一個大類別 */}
         <div className="flex-col my-8">
-          <aside>
-            <ul>
-              <li>
-                <a href="#" className="text-sm text-black">
-                  ALL CATEGORIES
-                </a>
-              </li>
-
-              <li>
-                <a href="#" className="text-xs text-black">
-                  ACTIVITY
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-black">
-                  HOME
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-black">
-                  KIDS
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-black">
-                  PETS
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-black">
-                  SELF-CARE
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-xs text-black">
-                  TECHNOLOGY
-                </a>
-              </li>
-            </ul>
-          </aside>
+        <CategoriesList />
           {/* 第二個大類別 */}
           <aside className="mt-8">
             <h1 className="text-sm text-black">CLOTHING</h1>
