@@ -17,12 +17,11 @@ Before you begin, ensure that you have the following prerequisites installed:
    # Ensure Node is downloaded: https://nodejs.org/en/download/ (tested on v16 and v18)
    git clone https://github.com/weipo0116/HCI_Eyes_tracker.git
    cd HCI_Eyes_tracker
+   
    #install the dependencies
    npm install
    #build the project
    npm run build
-
-
 
 ## Customization
 
