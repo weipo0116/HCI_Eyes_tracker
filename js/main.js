@@ -1,5 +1,7 @@
 window.onload = async function () {
   var prevY = 0;
+  var previousElement = null;
+  var targetElementId = "switch_color"; //當Target id為此的時候會 changeElementStyle
   //start the webgazer tracker
   await webgazer
     .setRegression("ridge") /* currently must set regression and tracker */
@@ -9,6 +11,24 @@ window.onload = async function () {
       //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
       var scrollX = data.x + window.scrollX;
       var scrollY = data.y + window.scrollY;
+      var gazeX = data.x;
+      var gazeY = data.y;
+      // 获取当前眼动点所在的 DOM 元素
+      var elementAtGaze = document.elementFromPoint(gazeX, gazeY);
+
+      // 检查是否存在元素
+      if (elementAtGaze && elementAtGaze.id === targetElementId) {
+        // 如果眼动到的元素不同于上一个元素，恢复上一个元素的样式，更改当前元素的样式
+        if (elementAtGaze !== previousElement) {
+          resetPreviousElementStyle();
+          changeElementStyle(elementAtGaze);
+          previousElement = elementAtGaze;
+        }
+      } else {
+        // 如果没有眼动到元素，恢复上一个元素的样式
+        resetPreviousElementStyle();
+        previousElement = null;
+      }
 
       displayCustomElement(data.x, data.y);
 
@@ -45,6 +65,24 @@ window.onload = async function () {
     canvas.style.position = "fixed";
   };
   setup();
+
+  // 重置上一个元素的样式
+  function resetPreviousElementStyle() {
+    if (previousElement) {
+      previousElement.style.fontSize = "";
+      previousElement.style.backgroundColor = "";
+      previousElement.style.color = "";
+      element.style.transform = "";
+    }
+  }
+
+  // 更改当前元素的样式
+  function changeElementStyle(element) {
+    element.style.fontSize = "95%";
+    element.style.backgroundColor = "pink";
+    element.style.color = "red";
+    element.style.transform = "scale(1.12)";
+  }
 };
 
 // Set to true if you want to save the data even if you reload the page.
